@@ -12,9 +12,6 @@ class BinarySum extends StatefulWidget {
 
 class _BinarySumState extends State<BinarySum> {
   dynamic _resultadoBinarioFinal = "";
-  dynamic _resultadoDecimalFinal = "";
-  String _resultadoBinario1 = "";
-  String _resultadoBinario2 = "";
   String _resultadoDecimal1 = "";
   String _resultadoDecimal2 = "";
   TextEditingController _controller1 = TextEditingController();
@@ -56,7 +53,8 @@ class _BinarySumState extends State<BinarySum> {
         title: Text("Soma Binária"),
         centerTitle: true,
       ),
-      body: Container(
+      body: SingleChildScrollView(
+        child: Container(
         padding: EdgeInsets.all(32),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -122,36 +120,39 @@ class _BinarySumState extends State<BinarySum> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(40, 32, 40, 16),
+              padding: EdgeInsets.fromLTRB(0, 32, 0, 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [Text("Valor 1: "), Text(_resultadoDecimal1)],
+                children: [Text("Valor 1: "), Flexible(child: Text(_resultadoDecimal1))],
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(40, 0, 40, 16),
+              padding: EdgeInsets.fromLTRB(0, 0, 0, 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [Text("Valor 2: "), Text(_resultadoDecimal2)],
+                children: [Text("Valor 2: "), Flexible(child: Text(_resultadoDecimal2))],
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(40, 16, 40, 0),
+              padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("Resultado: ",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                  Text(
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+                  Flexible(
+                    child: Text(
                     _resultadoBinarioFinal,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                  )
                   )
                 ],
               ),
             ),
           ],
         ),
+      ),
       ),
       bottomNavigationBar: Padding(
         padding: EdgeInsets.only(bottom: 16),

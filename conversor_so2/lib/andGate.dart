@@ -11,7 +11,7 @@ class AndGate extends StatefulWidget {
 
 class _AndGateState extends State<AndGate> {
 
-  dynamic _resultado = "Resultado";
+  dynamic _resultado = "";
   TextEditingController _controller = TextEditingController();
 
   @override

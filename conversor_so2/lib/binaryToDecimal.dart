@@ -11,7 +11,7 @@ class BinaryToDecimal extends StatefulWidget {
 
 class _BinaryToDecimalState extends State<BinaryToDecimal> {
 
-  dynamic _resultado = "Resultado";
+  dynamic _resultado = "";
   TextEditingController _controller = TextEditingController();
 
   _calcular(String binario) {
