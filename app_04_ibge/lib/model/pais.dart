@@ -22,7 +22,7 @@ class Pais {
   factory Pais.fromJson(Map<String, dynamic> json) {
     return Pais(
       json['id']['M49'],
-      json['id']['ISO-3166-1ALPHA-2'],
+      json['id']['ISO-3166-1-ALPHA-2'],
       json['nome']['abreviado'],
       json['area']['total'],
       json['governo']['capital']['nome'],
