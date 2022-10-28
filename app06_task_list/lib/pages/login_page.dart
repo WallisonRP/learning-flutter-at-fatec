@@ -18,23 +18,24 @@ class _LoginPageState extends State<LoginPage> {
   var txtSenha = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    txtEmail.text = '';
+    txtSenha.text = '';
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: SingleChildScrollView(
           child: Column(
             children: [
-              Center(
-                child: Container(
-                padding: EdgeInsets.all(100.0),
-                child: Icon(
+              Container(
+                padding: EdgeInsets.fromLTRB(100, 50, 100, 50),
+                child: Center(
+                  child: Icon(
                     Icons.task_outlined,
                     color: Colors.blueAccent.shade700,
-                    size: 200.0,
+                    size: 150.0,
                   ),
+                ),
               ),
-              ),
-              
               campoTexto('Email', Icons.email, txtEmail),
               campoTexto('Senha', Icons.lock, txtSenha, senha: true),
               Row(
@@ -55,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
                           title: Text(
                             'Informe seu e-mail',
                             style: GoogleFonts.roboto(
-                              fontSize: 36,
+                              fontSize: 24,
                               color: Colors.blueGrey.shade700,
                             ),
                           ),
@@ -94,13 +95,15 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               onPressed: () async {
                                 if (txtEmail.text.isNotEmpty) {
-                                  LoginController().esqueceuSenha(txtEmail.text);
-                                  sucesso(context, 'E-mail enviado com sucesso.');
+                                  LoginController()
+                                      .esqueceuSenha(txtEmail.text);
+                                  sucesso(
+                                      context, 'E-mail enviado com sucesso.');
                                 } else {
                                   erro(context,
                                       'Informe o e-mail para recuperar a senha.');
                                 }
-      
+
                                 Navigator.pop(context);
                               },
                               child: Text(
@@ -123,11 +126,13 @@ class _LoginPageState extends State<LoginPage> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  LoginController().login(context, txtEmail.text, txtSenha.text);
+                  LoginController()
+                      .login(context, txtEmail.text, txtSenha.text);
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.blueAccent.shade700,
-                  minimumSize: Size(MediaQuery.of(context).size.width * 0.9, 60),
+                  minimumSize:
+                      Size(MediaQuery.of(context).size.width * 0.9, 60),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0),
                   ),
