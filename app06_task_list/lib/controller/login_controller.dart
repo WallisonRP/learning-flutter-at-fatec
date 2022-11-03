@@ -10,13 +10,13 @@ class LoginController {
         .createUserWithEmailAndPassword(email: email, password: senha)
         .then((res) {
       //Armazenar o nome no Firestore
-      // FirebaseFirestore.instance.collection('usuarios')
-      //   .add(
-      //     {
-      //       "uid" : res.user!.uid.toString(),
-      //       "nome" : nome,
-      //     }
-      //   );
+      FirebaseFirestore.instance.collection('usuarios')
+        .add(
+          {
+            "uid" : res.user!.uid.toString(),
+            "nome" : nome,
+          }
+        );
 
       sucesso(context, 'Usuário criado com sucesso.');
       Navigator.pop(context);
@@ -57,5 +57,38 @@ class LoginController {
     });
   }
 
-  void esqueceuSenha(String email) {}
+  Future<void> esqueceuSenha(String email) async {
+    await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+  }
+
+
+  
+  //
+  // LOGOUT
+  //
+  void logout() {
+    FirebaseAuth.instance.signOut();
+  }
+
+  //
+  // RETORNAR USUÁRIO LOGADO
+  //
+  Future<String> retornarUsuarioLogado() async {
+    var uid = FirebaseAuth.instance.currentUser!.uid;
+    var res;
+    await FirebaseFirestore.instance
+        .collection('usuarios')
+        .where('uid', isEqualTo: uid)
+        .get()
+        .then(
+      (q) {
+        if (q.docs.isNotEmpty) {
+          res = q.docs[0].data()['nome'];
+        } else {
+          res = "";
+        }
+      },
+    );
+    return res;
+  }
 }
